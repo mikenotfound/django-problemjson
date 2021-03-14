@@ -1,10 +1,23 @@
 # -*- coding: utf-8 -*-
 
 # Django
+import logging
+from functools import wraps
+
 from django.http import JsonResponse
 
-# Project
-from .exception import APIException
+# Local
+from .exceptions import APIException
+
+
+def capture_exception(func):
+    """Decorate process_exception with exception capturing."""
+    @wraps(func)
+    def wrapper(self, request, exception):
+        logging.exception(exception)
+        return func(self, request, exception)
+
+    return wrapper
 
 
 class HTTPProblemJSONMiddleware:
@@ -19,6 +32,7 @@ class HTTPProblemJSONMiddleware:
         """Process request."""
         return self.get_response(request)
 
+    @capture_exception
     def process_exception(self, request, exception):
         if not isinstance(exception, APIException):
             exception = APIException()

@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "django-problemjson"
+version = "0.1.0"
+description = "RFC-7807 compliant 'application/problem+json' exception handling for Django"
+authors = ["Mike Hurt <m.hurt@incusperformance.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/mikenotfound/django-problemjson"
+repository = "https://github.com/mikenotfound/django-problemjson"
+keywords = ["django", "rfc-7807"]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+include = [
+    "LICENSE",
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
